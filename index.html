@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#180f19"><title>Para minha bebexinha ♡</title>
+<style>
+:root{--bg:#180f19;--rose:#e9a9bd;--cream:#fff0e8;--muted:#d8bdc8;--gold:#e9d2a1}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--cream);font-family:Georgia,serif;background:radial-gradient(ellipse at 50% 0%,#563044 0%,#281827 42%,var(--bg) 100%)}
+main{width:min(760px,92%);margin:auto;padding:42px 0 60px;text-align:center}.kicker{letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font:11px Arial,sans-serif}
+h1{font-size:clamp(2.5rem,9vw,5rem);font-weight:normal;line-height:1.03;margin:18px 0;color:#ffe5eb}h1 em{color:var(--rose)}
+.lead{max-width:540px;margin:auto;color:var(--muted);font-size:1.12rem;line-height:1.8}
+.card{margin:30px auto;padding:25px 22px;border:1px solid #b77a9166;border-radius:24px;background:#fff9f908;box-shadow:0 18px 60px #0005}
+button{border:1px solid #f0c2d2;background:linear-gradient(135deg,#d78ba7,#a95d7e);color:#24131d;padding:13px 21px;border-radius:999px;font-weight:bold;font-size:15px;cursor:pointer;margin:8px}
+button.secondary{background:transparent;color:#ffe5eb;border-color:#dca8ba}.note{font:12px Arial,sans-serif;color:#cbaebc;line-height:1.6}.hidden{display:none!important}
+#garden{position:relative;min-height:255px;margin:24px auto 10px;overflow:hidden;border-radius:18px;background:linear-gradient(#281c34,#17251f 70%,#101a17);border:1px solid #ffffff20}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.5px);background-size:43px 39px;opacity:.45}.moon{position:absolute;right:13%;top:20px;width:42px;height:42px;border-radius:50%;background:#f8e7c7;box-shadow:0 0 35px #f8e7c788}
+.ground{position:absolute;bottom:-50px;left:-10%;width:120%;height:120px;background:#243c2d;border-radius:50% 50% 0 0}
+.flower{position:absolute;bottom:60px;width:5px;height:95px;background:#79a77b;transform-origin:bottom;border-radius:5px;animation:sway 3s ease-in-out infinite alternate}
+.flower:before{content:"";position:absolute;width:22px;height:22px;left:-9px;top:-12px;border-radius:50%;background:#f3b8ce;box-shadow:0 -13px #f3b8ce,13px 0 #f3b8ce,0 13px #f3b8ce,-13px 0 #f3b8ce,0 0 0 4px #e8c879 inset}
+.flower:after{content:"";position:absolute;top:45px;left:3px;width:22px;height:11px;border-radius:100% 0 100% 0;background:#6f9b70;transform:rotate(-25deg)}
+.f1{left:24%;animation-delay:-1s}.f2{left:48%;height:125px;animation-delay:-2s}.f3{left:72%;height:105px;animation-delay:-.5s}
+@keyframes sway{from{transform:rotate(-5deg)}to{transform:rotate(6deg)}}
+.message{font-size:1.08rem;line-height:1.85;color:#f8e5eb}.signature{font-style:italic;color:var(--rose);font-size:1.25rem}
+footer{margin-top:28px;color:#b99eab;font:11px Arial,sans-serif;letter-spacing:.08em}.heart{color:#e99bb8}
+</style></head><body><main>
+<div class="kicker">um pequeno presente feito com carinho</div>
+<h1>Para você,<br><em>bebexinha</em> ♡</h1>
+<p class="lead">Tem coisas que merecem ser sentidas com calma. Preparei esse cantinho para você, com carinho, flores e um pedacinho do meu coração.</p>
+<section class="card" id="intro">
+<p class="message">Antes de entrar, respire fundo e lembre que existe alguém que fica feliz só por ter você na vida.</p>
+<button id="enter">Abrir meu presente ♡</button><div><button class="secondary" id="music">♫ Ligar a musiquinha</button></div>
+<p class="note">A música é uma melodia instrumental original criada neste presente. Toque no botão para começar.</p>
+</section>
+<section class="card hidden" id="surprise">
+<div class="kicker">seu lugar especial</div><h2 style="font-weight:normal;font-size:2rem;color:#f7dce6">Um jardim só seu</h2>
+<div id="garden" aria-label="Jardim noturno com três flores cor-de-rosa"><div class="stars"></div><div class="moon"></div><div class="ground"></div><div class="flower f1"></div><div class="flower f2"></div><div class="flower f3"></div></div>
+<p class="message">Se eu pudesse, plantaria um jardim inteiro só para ver cada flor lembrar o quanto você é especial. E, mesmo nos dias nublados, quero ser cuidado, carinho e paz para você.</p>
+<p class="message">Que nunca faltem motivos para sorrir, sonhos para realizar e amor para florescer. Você merece as coisas mais bonitas desse mundo, minha bebexinha.</p>
+<p class="signature">Com todo meu carinho, seu menino. <span class="heart">♥</span></p>
+<p class="message" style="margin-top:22px;font-size:1.25rem;color:#f3c2d2;font-weight:bold">nós vamos casar de Crocs do McQueen katchauu ⚡</p>
+<button class="secondary" id="again">Ler mais uma vez ♡</button></section>
+<footer>feito especialmente para minha bebexinha · ♡</footer></main>
+<script>
+let audioCtx=null,playing=false,timer=null,noteIndex=0;
+const melody=[523.25,659.25,783.99,659.25,587.33,698.46,783.99,698.46,523.25,587.33,659.25,523.25];
+function playNote(freq,start,duration){const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type="sine";osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.075,start+.04);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(start);osc.stop(start+duration+.03)}
+async function toggleMusic(){const btn=document.getElementById("music");if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==="suspended")await audioCtx.resume();if(playing){clearInterval(timer);playing=false;btn.textContent="♫ Ligar a musiquinha";return}playing=true;btn.textContent="♫ Pausar a musiquinha";const next=()=>{playNote(melody[noteIndex%melody.length],audioCtx.currentTime,.48);noteIndex++};next();timer=setInterval(next,520)}
+document.getElementById("music").addEventListener("click",toggleMusic);
+document.getElementById("enter").addEventListener("click",()=>{document.getElementById("intro").classList.add("hidden");document.getElementById("surprise").classList.remove("hidden");if(!playing)toggleMusic()});
+document.getElementById("again").addEventListener("click",()=>{document.getElementById("surprise").classList.add("hidden");document.getElementById("intro").classList.remove("hidden")});
+</script></body></html>
